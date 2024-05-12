@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:cast/cast.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,8 +24,10 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -84,7 +87,8 @@ class _MyHomePageState extends State<MyHomePage> {
     _future = CastDiscoveryService().search();
   }
 
-  Future<void> _connectToYourApp(BuildContext context, CastDevice object) async {
+  Future<void> _connectToYourApp(
+      BuildContext context, CastDevice object) async {
     final session = await CastSessionManager().startSession(object);
 
     session.stateStream.listen((state) {
@@ -114,7 +118,8 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  Future<void> _connectAndPlayMedia(BuildContext context, CastDevice object) async {
+  Future<void> _connectAndPlayMedia(
+      BuildContext context, CastDevice object) async {
     final session = await CastSessionManager().startSession(object);
 
     session.stateStream.listen((state) {
@@ -149,7 +154,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
     var message = {
       // Here you can plug an URL to any mp4, webm, mp3 or jpg file with the proper contentType.
-      'contentId': 'http://commondatastorage.googleapis.com/gtv-videos-bucket/big_buck_bunny_1080p.mp4',
+      'contentId':
+          'http://commondatastorage.googleapis.com/gtv-videos-bucket/big_buck_bunny_1080p.mp4',
       'contentType': 'video/mp4',
       'streamType': 'BUFFERED', // or LIVE
 
@@ -159,7 +165,10 @@ class _MyHomePageState extends State<MyHomePage> {
         'metadataType': 0,
         'title': "Big Buck Bunny",
         'images': [
-          {'url': 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg'}
+          {
+            'url':
+                'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg'
+          }
         ]
       }
     };
